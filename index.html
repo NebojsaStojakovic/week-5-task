@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+	<link rel="stylesheet" href="style.css">
+	<title>Search GitHub username</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="github">
+			<header class="github__header">
+				<a class="github__logo" href="#">
+					<h1 class="github__logo-title">devfinder</h1>
+				</a>
+				<div class="github__switch">
+					<span class="github__switch-text dark-mode">dark</span>
+					<span class="github__switch-text light-mode">light</span>
+					<i class="fas fa-moon change-theme" id="theme-button"></i>
+				</div>
+			</header>
+			<div class="github__search active">
+				<label for="search" class="github__search-label sr-only"></label>
+				<input class="github__search-input" type="search" name="user-input" id="search"
+					placeholder="Search Github username...">
+				<span class="github__search-error">No results</span>
+				<button class="github__search-btn" id="submit">Search</button>
+			</div>
+			<div class="github__content">
+				<img class="github__content-img desktop-avatar" id="avatar" src="./assets/octocat.png" alt="avatar">
+				<div class="github__content-container">
+					<div class="github__content-header">
+						<img class="github__content-img mobile-avatar" id="avatar" src="./assets/octocat.png"
+							alt="avatar">
+						<div class="github__content-info">
+							<div class="github__content-profile">
+								<span class="github__content-name" id="name">The Octocat</span>
+								<span class="github__content-user" id="user">@octocat</span>
+							</div>
+							<span class="github__content-date" id="date">Joined 25 Jan 2011</span>
+						</div>
+					</div>
+					<p class="github__content-about" id="bio">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+						Donec odio. Quisque volutpat mattis eros.
+					</p>
+					<div class="github__content-stats">
+						<div class="github__content-stat">
+							<span class="github__content-stat-title">Repos</span>
+							<span id="repos" class="github__content-stat-value">8</span>
+						</div>
+						<div class="github__content-stat">
+							<span class="github__content-stat-title">Followers</span>
+							<span id="followers" class="github__content-stat-value">3938</span>
+						</div>
+						<div class="github__content-stat">
+							<span class="github__content-stat-title">Following</span>
+							<span id="following" class="github__content-stat-value">9</span>
+						</div>
+					</div>
+					<div class="github__content-footer">
+						<div class="github__content-links">
+							<div class="github__content-link">
+								<i class="fas fa-map-marker-alt github__content-link-img"></i>
+								<span class="github__content-link-title" id="location">San Francisco</span>
+							</div>
+							<div class="github__content-link">
+								<i class="fas fa-link github__content-link-img"></i>
+								<a href="" target="_blank" class="github__content-link-title" id="website">
+									https://github.blog
+								</a>
+							</div>
+						</div>
+						<div class="github__content-links">
+							<div class="github__content-link">
+								<i class="fab fa-twitter github__content-link-img"></i>
+								<span class="github__content-link-title" id="twitter">Not Available</span>
+							</div>
+							<div class="github__content-link">
+								<i class="fas fa-building github__content-link-img"></i>
+								<span class="github__content-link-title" id="company">@github</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://kit.fontawesome.com/bf103bd416.js" crossorigin="anonymous"></script>
+	<script src="main.js"></script>
+</body>
+
+</html>
