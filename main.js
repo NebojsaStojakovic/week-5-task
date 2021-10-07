@@ -19,13 +19,12 @@ const userLocation = document.getElementById('location');
 const page = document.getElementById('website');
 const twitter = document.getElementById('twitter');
 const company = document.getElementById('company');
-const themeButton = document.getElementById('theme-button');
+const me = 'nebojsaStojakovic';
+const body = document.querySelector("body")
+const themeButton = document.querySelector('.github__switch');
 const darkTheme = 'dark-theme';
-const iconTheme = 'fa-sun';
 const selectedTheme = localStorage.getItem('selected-theme');
-const selectedIcon = localStorage.getItem('selected-icon');
 const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light';
-const getCurrentIcon = () => document.body.classList.contains(iconTheme) ? 'fa-moon' : 'fa-sun';
 searchBtn.addEventListener('click', function () {
     resetValues();
     if (input.value !== "") {
@@ -58,27 +57,31 @@ function getUserData(gitUrl) {
             throw error;
         })
 }
+function checkNull(param1, param2) {
+    if ((param1 === "") || (param1 === null)) {
+        param2.parentNode.style.opacity = 0.5;
+        param2.style.pointerEvents = "none";
+        return "Not available"
+    } else {
+        param2.style.pointerEvents = "auto";
+        return `${param1}`
+    }
+}
 function updateProfile(data) {
     if (data.message !== "Not Found") {
         noResults.style.display = "none";
-        function checkNull(param1, param2) {
-            if ((param1 === "") || (param1 === null)) {
-                // param2.style.opacity = 0.5;
-                param2.parentNode.style.opacity = 0.5;
-                param2.style.pointerEvents = "none";
-                return "Not available"
-            } else {
-                param2.style.pointerEvents = "auto";
-                return `${param1}`
-            }
-        }
         avatarMobile.src = `${data.avatar_url}`
         avatarDesktop.src = `${data.avatar_url}`
-        userName.innerText = (data.name == null) ? "This profile has no name" : `${data.name}`
+        userName.innerText = (data.name == null) ? `${data.login}` : `${data.name}`
         user.innerText = `@${data.login}`
         dateSegments = data.created_at.split("T").shift().split("-")
         date.innerText = `Joined ${dateSegments[2]} ${months[dateSegments[1] - 1]} ${dateSegments[0]}`
-        about.innerText = (data.bio == null) ? "This profile has no bio" : `${data.bio}`
+        if (data.bio == null) {
+            about.style.opacity = 0.5;
+            about.innerText = "This profile has no bio";
+        } else {
+            about.innerText = `${data.bio}`;
+        }
         repos.innerText = `${data.public_repos}`
         followers.innerText = `${data.followers}`
         following.innerText = `${data.following}`
@@ -99,14 +102,13 @@ function resetValues() {
         link.style.opacity = 1;
         link.lastChild.innerHTML = '';
     })
+    about.style.opacity = 1;
 }
 if (selectedTheme) {
     document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
-    themeButton.classList[selectedIcon === 'fa-moon' ? 'add' : 'remove'](iconTheme)
 }
 themeButton.addEventListener('click', () => {
     document.body.classList.toggle(darkTheme)
-    themeButton.classList.toggle(iconTheme)
     localStorage.setItem('selected-theme', getCurrentTheme())
-    localStorage.setItem('selected-icon', getCurrentIcon())
 });
+body.addEventListener('load', getUserData(gitUrl + me))

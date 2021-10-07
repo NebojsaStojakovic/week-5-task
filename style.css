@@ -245,22 +245,20 @@ a {
     position: absolute;
     color: red;
     font-weight: 700;
-    right: 120px;
+    right: 160px;
     display: none;
 }
-#website {
+#website,
+#twitter {
     color: var(--dark-blue);
-	margin-left: 14px;
 	position: relative;
 }
-#website:hover {
+#website:hover,
+#twitter:hover {
     text-decoration: underline var(--dark-blue);
 }
 .active{
     box-shadow: var(--shadow-active);
-}
-.light-mode {
-    display: none;
 }
 body.dark-theme {
     --bluish-white: #141D2F;
@@ -270,14 +268,23 @@ body.dark-theme {
 	--grey: white;
     --shadow-active: rgba(70,88,109,0.15);
 }
-body.dark-theme .light-mode {
-    display: inline-block;
-}
-body.dark-theme .dark-mode {
+body.dark-theme .dark-mode span {
     display: none;
+}
+body.dark-theme .dark-mode::after {
+    content: 'Light';
 }
 body.dark-theme .github__search-btn {
 	color: var(--white);
+}
+body .fa-sun {
+    display: none;
+}
+body.dark-theme .fa-sun {
+    display: inline-block;
+}
+body.dark-theme .fa-moon {
+    display: none;
 }
 @media screen and (min-width: 768px) {
 	.github {
